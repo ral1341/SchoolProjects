@@ -25,6 +25,9 @@ void create_menu()
 void report_menu()
 {
 	cout << "Report" << endl << "------" << endl;
+	cout << "2.1 (O)rders" << endl;
+	cout << "2.2 (S)ales Associates" << endl;
+	cout << "2.3 (C)ustomers" << endl;
 	cout << "2.4 Robot (M)odels" << endl;
 	cout << "2.5 Robot (P)arts" << endl;
 	cout << "2.9 (Q)uit" << endl;
@@ -57,5 +60,27 @@ void model_menu()
 	cout << "2.4.1 (L)ist" << endl;
 	cout << "2.4.2 (H)ide" << endl;
 	cout << "2.4.9 (Q)uit" << endl;
+	cout << "Please enter a Command: ";
+}
+
+void order_menu()
+{
+}
+
+void associate_menu()
+{
+	cout << "Associate Report" << endl << "----------------" << endl;
+	cout << "2.3.1 (L)ist" << endl;
+	cout << "2.3.2 (E)valuate" << endl;
+	cout << "2.3.9 (Q)uit" << endl;
+	cout << "Please enter a Command: ";
+}
+
+void customer_menu()
+{
+	cout << "Customer Report" << endl << "---------------" << endl;
+	cout << "2.2.1 (L)ist" << endl;
+	cout << "2.2.2 (V)iew" << endl;
+	cout << "2.2.9 (Q)uit" << endl;
 	cout << "Please enter a Command: ";
 }

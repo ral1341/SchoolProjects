@@ -12,7 +12,7 @@ int RobotModel::get_ID()
 
 double RobotModel::get_price()
 {
-	return sale_price;
+	return price;
 }
 
 void RobotModel::set_energy()
@@ -24,14 +24,4 @@ void RobotModel::set_energy()
 	power_con = arm1.get_power() + arm2.get_power() + locomotor.get_power();
 
 	total_energy = bat_power / power_con;
-}
-
-bool RobotModel::is_obsolete()
-{
-	return obsolete;
-}
-
-void RobotModel::make_obsolete()
-{
-	obsolete = true;
 }

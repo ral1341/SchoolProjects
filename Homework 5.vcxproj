@@ -147,15 +147,19 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="..\..\ConsoleApplication1\ConsoleApplication1\std_lib_facilities.h" />
-    <ClInclude Include="Order.h" />
+    <ClInclude Include="Customer.h" />
     <ClInclude Include="View.h" />
     <ClInclude Include="RobotModel.h" />
+    <ClInclude Include="Order.h" />
     <ClInclude Include="RobotPart.h" />
+    <ClInclude Include="salesAssociate.h" />
     <ClInclude Include="Shop.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Customer.cpp" />
     <ClCompile Include="RobotModel.cpp" />
     <ClCompile Include="RobotPart.cpp" />
+    <ClCompile Include="salesAssociate.cpp" />
     <ClCompile Include="Shop.cpp" />
     <ClCompile Include="Controller.cpp" />
     <ClCompile Include="View.cpp" />

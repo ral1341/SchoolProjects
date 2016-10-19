@@ -58,13 +58,25 @@ int main()
 				report_menu();
 				getline(cin, command);
 
-				if (command.compare("M") == 0)
+				if (command.compare("O") == 0)
 				{
-					store.report_models();
+					store.list_orders();
+				}
+				else if (command.compare("C") == 0)
+				{
+					store.list_customers();
+				}
+				else if (command.compare("S") == 0)
+				{
+					store.list_associates();
+				}
+				else if (command.compare("M") == 0)
+				{
+					store.list_models();
 				}
 				else if (command.compare("P") == 0)
 				{
-					store.report_parts();
+					store.list_parts();
 				}
 				else if (command.compare("Q") == 0)
 				{

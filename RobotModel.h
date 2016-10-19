@@ -11,8 +11,6 @@ public:
 	int get_ID();
 	double get_price();
 	void set_energy();
-	bool is_obsolete();
-	void make_obsolete();
 private:
 	string name;
 	int ID_number;

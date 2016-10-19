@@ -1,7 +1,8 @@
 #include "Shop.h"
 #include "View.h"
+#include "Customer.h"
 #include "Order.h"
-#include "std_lib_facilities.h"
+#include "salesAssociate.h"
 
 void shop::new_part()
 {
@@ -258,7 +259,7 @@ void shop::new_customer()
 	cout << "What is your customers price limit: ";
 	cin >> cash;
 
-	customer BC(name, ID, cash);
+	Customer BC(name, ID, cash);
 	customers.push_back(BC);
 
 	getline(cin, s);
@@ -283,109 +284,22 @@ void shop::new_associate()
 
 void shop::new_order()
 {
-	string s, date;
-	int id, cIndex, aIndex, mIndex;
+}
 
-	cout << "What is the order number: ";
-	cin >> id;
-	getline(cin, s);
+void shop::report_orders()
+{
+}
 
-	cout << "What is the date of the order (mm/dd/yyyy): ";
-	getline(cin, date);
+void shop::report_customers()
+{
+}
 
-	for (unsigned int i = 0; i < customers.size(); i++)
-	{
-		cout << "(" << i << ") " << customers[i].get_name() << endl;
-	}
-	cout << "Enter the index of the customer: ";
-	cin >> cIndex;
-	while ((cIndex < 0) || (cIndex >= customers.size()))
-	{
-		cout << "Invalid Index. Please enter valid index: ";
-		cin >> cIndex;
-	}
-
-	for (unsigned int i = 0; i < associates.size(); i++)
-	{
-		cout << "(" << i << ") " << associates[i].get_name() << endl;
-	}
-	cout << "Enter the index of the associate: ";
-	cin >> aIndex;
-	while ((aIndex < 0) || (aIndex >= customers.size()))
-	{
-		cout << "Invalid Index. Please enter valid index: ";
-		cin >> aIndex;
-	}
-
-	for (unsigned int i = 0; i < models.size(); i++)
-	{
-		if (!models[i].is_obsolete())
-		{
-			cout << "(" << i << ") " << models[i].get_name() << endl;
-		}
-	}
-	cout << "Enter the index of the customer: ";
-	cin >> mIndex;
-	while ((mIndex < 0) || (mIndex >= models.size()))
-	{
-		cout << "Invalid Index. Please enter valid index: ";
-		cin >> mIndex;
-	}
-
-	order O(id, date, cIndex, aIndex, models[mIndex]);
-	orders.push_back(O);
-	customers[cIndex].add_order(O);
-	associates[aIndex].add_order(O);
-	cout << endl;
+void shop::report_associates()
+{
 }
 
 void shop::report_models()
 {
-	string s = "start";
-
-	while (s.compare("Q"))
-	{
-		model_menu();
-		getline(cin, s);
-
-		if (s.compare("L") == 0)
-		{
-			for (unsigned int i = 0; i < models.size(); i++)
-			{
-				if (!models[i].is_obsolete())
-				{
-					cout << models[i].get_name() << " " << models[i].get_price() << endl;
-				}
-			}
-			cout << endl;
-		}
-		else if (s.compare("H") == 0)
-		{
-			int index;
-
-			for (unsigned int i = 0; i < models.size(); i++)
-			{
-				cout << "(" << i << ") " << models[i].get_name() << endl;
-			}
-			cout << "Please enter the index of the obsolete model: ";
-			cin >> index;
-			while ((index < 0) || (index >= models.size()))
-			{
-				cout << "Invalid Index. Please enter valid Index: ";
-				cin >> index;
-			}
-			models[index].make_obsolete();
-			cout << endl;
-		}
-		else if (s.compare("Q") == 0)
-		{
-			break;
-		}
-		else
-		{
-			cout << "Invalid command. Please enter a valid Command.";
-		}
-	}
 }
 
 void shop::report_parts()
@@ -404,14 +318,14 @@ void shop::report_parts()
 		cout << "Arms:" << endl;
 		for (unsigned int i = 0; i < arms.size(); i++)
 		{
-			cout << arms[i].get_name() << " " << arms[i].get_description() << " " << "obsolete: " << arms[i].is_obsolete() << endl;
+			cout << arms[i].get_name() << " " << arms[i].get_description() << " " << "obsolete: " << arms[i].is_obsolete << endl;
 		}
 		cout << endl;
 
 		cout << "Heads:" << endl;
 		for (unsigned int i = 0; i < heads.size(); i++)
 		{
-			cout << heads[i].get_name() << " " << heads[i].get_description() << " " << "obsolete: " << heads[i].is_obsolete() << endl;
+			cout << heads[i].get_name() << " " << heads[i].get_description() << " " << "obsolete: " << heads[i].is_obsolete << endl;
 		}
 		cout << endl;
 
@@ -432,104 +346,49 @@ void shop::report_parts()
 		cout << "Torsos:" << endl;
 		for (unsigned int i = 0; i < torsos.size(); i++)
 		{
-			cout << torsos[i].get_name() << " " << torsos[i].get_description() << " " << "obsolete: " << torsos[i].is_obsolete() << endl;
+			cout << torsos[i].get_name() << " " << torsos[i].get_description() << " " << "obsolete: " << torsos[i].is_obsolete();
 		}
 		cout << endl;
 	}
 	else if (s.compare("H") == 0)
 	{
-		int index;
 		com_menu();
 		getline(cin, s);
 
 		if (s.compare("A"))
 		{
-			for (unsigned int i = 0; i < arms.size(); i++)
-			{
-				cout << "(" << i << ") " << arms[i].get_name() << endl;
-			}
-			cout << "Select the obsolete part index: ";
-			cin >> index;
-			while ((index < 0) || (index >= arms.size()))
-			{
-				cout << "Invalid index. Please enter a valid index: ";
-				cin >> index;
-			}
-			arms[index].make_obsolete();
+
 		}
 
 		else if (s.compare("H") == 0)
 		{
-			for (unsigned int i = 0; i < heads.size(); i++)
-			{
-				cout << "(" << i << ") " << heads[i].get_name() << endl;
-			}
-			cout << "Select the obsolete part index: ";
-			cin >> index;
-			while ((index < 0) || (index >= heads.size()))
-			{
-				cout << "Invalid index. Please enter a valid index: ";
-				cin >> index;
-			}
-			heads[index].make_obsolete();
+
 		}
 
 		else if (s.compare("L") == 0)
 		{
-			for (unsigned int i = 0; i < Locomotors.size(); i++)
-			{
-				cout << "(" << i << ") " << Locomotors[i].get_name() << endl;
-			}
-			cout << "Select the obsolete part index: ";
-			cin >> index;
-			while ((index < 0) || (index >= Locomotors.size()))
-			{
-				cout << "Invalid index. Please enter a valid index: ";
-				cin >> index;
-			}
-			Locomotors[index].make_obsolete();
+
 		}
 
 		else if (s.compare("B") == 0)
 		{
-			for (unsigned int i = 0; i < bateries.size(); i++)
-			{
-				cout << "(" << i << ") " << bateries[i].get_name() << endl;
-			}
-			cout << "Select the obsolete part index: ";
-			cin >> index;
-			while ((index < 0) || (index >= bateries.size()))
-			{
-				cout << "Invalid index. Please enter a valid index: ";
-				cin >> index;
-			}
-			bateries[index].make_obsolete();
+
 		}
 
 		else if (s.compare("T") == 0)
 		{
-			for (unsigned int i = 0; i < torsos.size(); i++)
-			{
-				cout << "(" << i << ") " << torsos[i].get_name() << endl;
-			}
-			cout << "Select the obsolete part index: ";
-			cin >> index;
-			while ((index < 0) || (index >= torsos.size()))
-			{
-				cout << "Invalid index. Please enter a valid index: ";
-				cin >> index;
-			}
-			torsos[index].make_obsolete();
+
 		}
 	}
 	else if (s.compare("Q") == 0)
 	{
-		break;
+
 	}
 	else
 	{
 		cout << "Invalid Command. Please enter valid Command" << endl;
 	}
+	s = "continue";
 	
 	}
 }
